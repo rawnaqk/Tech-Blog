@@ -1,0 +1,19 @@
+<h1>{{post.title}}</h1>
+<p>Posted by {{post.username}} on {{post.createdAt}}</p>
+<p>{{post.content}}</p>
+
+{{#if session.userId}}
+<form action="/comments/{{post.id}}" method="POST">
+    <label for="comment">Add a comment:</label>
+    <textarea id="comment" name="content" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+{{/if}}
+
+<h2>Comments</h2>
+{{#each comments}}
+<div>
+    <p>{{this.content}}</p>
+    <p>Commented by {{this.username}} on {{this.createdAt}}</p>
+</div>
+{{/each}}
